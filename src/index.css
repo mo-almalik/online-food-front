@@ -9,17 +9,21 @@
     margin: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
-  
 }
 
-
-body{
-    height: 5000px !important;
-}
 .container{
         @apply mx-auto
 }
 
 .btn {
     @apply bg-main w-[186px] h-14 text-white rounded-full my-8 transition-all duration-200 hover:bg-red-400
+}
+
+.box{
+    border-radius: 100px 10px 150px 10px  ;
+    z-index: 0;
+}
+
+.cart{
+    @apply w-fit bg-main p-2 rounded-lg text-white hover:bg-red-500
 }

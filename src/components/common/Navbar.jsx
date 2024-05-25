@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import logo from '../../assets/logo.svg';
 import { NavLink } from 'react-router-dom';
-import { Menu, ShoppingBag } from 'lucide-react';
+import { CircleUser, Menu, ShoppingBag } from 'lucide-react';
 
 export default function Navbar() {
   const headerRef = useRef();
@@ -42,7 +42,10 @@ export default function Navbar() {
             <div className='block sm:hidden'>
               <Menu size={18} />
             </div>
+            <div className='flex justify-center items-center gap-x-2'>
+            <CircleUser size={18} />
             <ShoppingBag size={18} />
+            </div>
           </div>
         </div>
       </div>
