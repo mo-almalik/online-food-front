@@ -1,15 +1,16 @@
 import { CircleUser, Menu, ShoppingBag } from 'lucide-react';
-import React, { useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import logo from '../../assets/logo.svg';
-import { isAuthenticated, user } from '../../utils/auth.js';
+import { AuthContext } from '../../context/AuthContext.js';
+ 
  
 
 export default function Navbar() {
   const headerRef = useRef();
  
+const {user ,isAuthenticated ,logout} =  useContext(AuthContext)
 const userInfo = user()
-
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 100) {
@@ -28,6 +29,7 @@ const userInfo = user()
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
 
   return (
     <header ref={headerRef} className='w-full bg-white fixed left-0 right-0 top-0 z-50 py-[30px] transition-all duration-300 text-gray-700'>
@@ -50,8 +52,8 @@ const userInfo = user()
          <div className='flex items-center gap-x-2'>
          {isAuthenticated() ?  <>
           <span>{userInfo.name}</span>
-          <span>خ</span>
-         </> : <> <CircleUser size={18} /></> }
+          <button onClick={()=>logout()} >خ</button>
+         </> : <> </> }
         
          </div>
             <ShoppingBag size={18} />

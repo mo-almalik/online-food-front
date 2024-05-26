@@ -4,16 +4,16 @@ import Home from "./pages/user/Home.jsx";
 import Form from "./auth/Form.jsx";
 import Dashboard from "./pages/admin/Dashboard/Dashboard.jsx";
 import AdminLayout from "./components/layout/AdminLayout.jsx";
+import ProductDetails from "./components/ProductDetails.jsx";
 
 let Routers =createBrowserRouter([
   {path:'/',element:<Layout />,children:[
     {index:true,element:<Home />},
     {path:'/auth',element:<Form />},
-
-
+    {path:'/product/:id',element:<ProductDetails />}
   ]},
    // dashboard
-  {path:'dashboard',element:<AdminLayout /> ,children:[
+  {path:'/dashboard',element:<AdminLayout /> ,children:[
     {index:true,element:<Dashboard />},
   ]}
 ])

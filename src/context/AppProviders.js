@@ -1,12 +1,13 @@
-import React from 'react';
-import { AuthProvider } from './AuthContext.js';
-
-
+import React from "react";
+import { AuthProvider } from "./AuthContext.js";
+import { ProductsProvider } from "./ProductsContext.js";
 
 const AppProviders = ({ children }) => {
   return (
     <AuthProvider>
-            {children}
+      <ProductsProvider>
+        {children}
+      </ProductsProvider>
     </AuthProvider>
   );
 };

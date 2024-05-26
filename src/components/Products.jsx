@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import data from '../services/Data.json';
+import React, { useContext, useEffect, useState } from 'react';
+
 import { ShoppingBag, Star } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { ProductsContext } from '../context/ProductsContext.js';
+import { Link } from 'react-router-dom';
 
 export default function Products() {
-  const [products, setProducts] = useState([]);
+ const {products ,loading ,fetchProducts} = useContext(ProductsContext)
   const [clickedIndex, setClickedIndex] = useState(null);
-
-  useEffect(() => {
-    setProducts(data);
-  }, []);
 
   const handleCart = (index) => {
     setClickedIndex(index);
@@ -21,12 +19,22 @@ export default function Products() {
     animate: { y: [0, 50, -50, 0] }, // Moves down 50px, then up to -50px, and back to 0
   };
 
+  useEffect(() => {
+    fetchProducts();
+}, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 text-center gap-3 mx-5 sm:mx-10 md:mx-0 lg:mx-0 xl:mx-0 xxl:mx-0 my-20'>
       {products.map((item, index) => (
         <div className='bg-white shadow-lg shadow-gray-100 rounded-lg h-auto' key={index}>
           <div className='h-[200px] w-full mx-auto'>
-            <img src={item.image.path} className='w-full h-full object-cover mx-auto rounded-lg' alt={item.name} />
+          <Link to={`/product/${item._id}`}>
+          <img src={item.image.path} className='w-full h-full object-cover mx-auto rounded-lg' alt={item.name} />
+          </Link>
           </div>
           <div className='flex flex-col justify-center items-center p-5 w-full'>
             <div className='flex justify-between items-center w-full'>

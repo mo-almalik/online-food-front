@@ -1,15 +1,16 @@
 
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useForm } from "react-hook-form"
 import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
 import { yupResolver } from "@hookform/resolvers/yup"
-
 import axios from 'axios'
-import { isAuthenticated, saveAuthData, userRole } from '../utils/auth.js'
+import { AuthContext } from '../context/AuthContext.js'
+
 export default function Login() {
   const [lodaing,setLoading] = useState(true)
   const [error ,setError] = useState('')
+  const { isAuthenticated, saveAuthData, user } = useContext(AuthContext)
 
   let schema = Yup.object({
     email: Yup.string().email('Email required ').required('Email required '),
@@ -34,12 +35,11 @@ let navigate = useNavigate()
     try{
       const res = await axios.post('http://localhost:3001/v1/auth/login', data)
       const token = res.data?.token
-      const user  =res.data?.user 
+
       saveAuthData(token)
-      console.log(user);
       if(isAuthenticated()){
-        const Role = userRole()
-        if(Role === 'admin') {
+        const Role = user()
+        if(Role.role === 'admin') {
           return navigate('/dashboard')
         }else{
           return navigate('/')
@@ -48,7 +48,7 @@ let navigate = useNavigate()
 
     }catch(err){
      setError(err.response?.data?.message)
-     console.log(error);
+
     }
   
   }
