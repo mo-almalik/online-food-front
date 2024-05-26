@@ -1,10 +1,14 @@
-import React, { useEffect, useRef } from 'react';
-import logo from '../../assets/logo.svg';
-import { NavLink } from 'react-router-dom';
 import { CircleUser, Menu, ShoppingBag } from 'lucide-react';
+import React, { useEffect, useRef } from 'react';
+import { NavLink } from 'react-router-dom';
+import logo from '../../assets/logo.svg';
+import { isAuthenticated, user } from '../../utils/auth.js';
+ 
 
 export default function Navbar() {
   const headerRef = useRef();
+ 
+const userInfo = user()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,7 +18,7 @@ export default function Navbar() {
       } else {
         headerRef.current.style.background = '#fff';
         headerRef.current.style.padding = '30px 0';
-      }
+      } 
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -43,7 +47,13 @@ export default function Navbar() {
               <Menu size={18} />
             </div>
             <div className='flex justify-center items-center gap-x-2'>
-            <CircleUser size={18} />
+         <div className='flex items-center gap-x-2'>
+         {isAuthenticated() ?  <>
+          <span>{userInfo.name}</span>
+          <span>خ</span>
+         </> : <> <CircleUser size={18} /></> }
+        
+         </div>
             <ShoppingBag size={18} />
             </div>
           </div>

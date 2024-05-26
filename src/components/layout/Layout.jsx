@@ -5,7 +5,7 @@ import Navbar from '../common/Navbar.jsx'
 export default function Layout() {
   return (
     <div>
-     <Navbar />
+      <Navbar />
       <Outlet />
     </div>
   )
