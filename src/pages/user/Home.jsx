@@ -12,8 +12,8 @@ export default function Home() {
   </Helmet>
 
     <div className='container'>
-       <Hero />
-       <Services />
+       {/* <Hero />
+       <Services /> */}
        <Products />
        <CallToAction />
     </div>

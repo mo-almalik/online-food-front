@@ -15,7 +15,7 @@ const ProductsProvider = ({ children }) => {
             const response = await api.get('/products');
             setProducts(response.data?.data)
             setLoading(false);
-            console.log("ptest" ,response);
+          
         } catch (err) {
             setError(err.response.data.message)
         }

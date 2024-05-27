@@ -7,7 +7,6 @@ export default function ProductDetails() {
 
   const {fetchSingleProduct ,products} = useContext(ProductsContext)
 
-  console.log('detals page' ,products);
   useEffect(()=>{
     fetchSingleProduct(id)
   },[])
