@@ -21,14 +21,14 @@ export default function Products() {
 
   useEffect(() => {
     fetchProducts();
-}, []);
+},[]);
 
 
 
   return (
     <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 text-center gap-3 mx-5 sm:mx-10 md:mx-0 lg:mx-0 xl:mx-0 xxl:mx-0 my-20'>
       {loading ? <>loooo</> : <>
-      {products?.map((item, index) => (
+      {products.map((item, index) => (
         <div className='bg-white shadow-lg shadow-gray-100 rounded-lg h-auto' key={index}>
           <div className='h-[200px] w-full mx-auto'>
           <Link to={`/product/${item._id}`}>
